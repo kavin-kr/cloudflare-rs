@@ -61,7 +61,7 @@ impl Client {
     /// Issue an API request of the given type.
     pub async fn request<ResultType, QueryType, BodyType>(
         &self,
-        endpoint: &(dyn Endpoint<ResultType, QueryType, BodyType>),
+        endpoint: &(dyn Endpoint<ResultType, QueryType, BodyType> + Send + Sync),
     ) -> ApiResponse<ResultType>
     where
         ResultType: ApiResult,
